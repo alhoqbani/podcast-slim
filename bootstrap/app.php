@@ -1,7 +1,13 @@
 <?php
 require_once '../vendor/autoload.php';
-$dotenv = new Dotenv\Dotenv(__DIR__ . '/../');
-$dotenv->load();
+
+try {
+    $dotenv = new Dotenv\Dotenv(__DIR__ . '/../');
+    $dotenv->load();
+    
+} catch (\Dotenv\Exception\InvalidPathException $e) {
+    //
+}
 
 require_once 'database.php';
 require_once 'paginatoin.php';
