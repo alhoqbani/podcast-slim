@@ -9,8 +9,13 @@ require_once 'database.php';
 $app = new \Slim\App([
     'settings' => [
         'displayErrorDetails' => true,
-    ]
+    ],
 ]);
 
+$container = $app->getContainer();
+
+$container['fractal'] = function ($c) {
+    return new \League\Fractal\Manager();
+};
 
 require_once '../routes/api.php';

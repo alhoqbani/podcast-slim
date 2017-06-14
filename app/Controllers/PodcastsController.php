@@ -3,10 +3,12 @@
 namespace App\Controllers;
 
 use App\Models\Podcast;
+use App\Transformers\PodcastTransformer;
+use League\Fractal\Resource\Item;
 use Psr\Http\Message\RequestInterface as Request;
 use Slim\Http\Response as Response;
 
-class PodcastsController
+class PodcastsController extends Controller
 {
     
     public function index(Request $request, Response $response, $args)
@@ -18,12 +20,16 @@ class PodcastsController
     
     public function show(Request $request, Response $response, $args)
     {
-        $podcat = Podcast::find($args['id']);
-        if (!$podcat) {
+        $podcast = Podcast::find($args['id']);
+        if ( ! $podcast) {
             return $response->withJson([
-                'error' => 'No podcast was found'
+                'error' => 'No podcast was found',
             ], 404);
         }
-        return $response->withJson($podcat);
+        
+        $resource = new Item($podcast, new PodcastTransformer());
+        $data = $this->c->fractal->createData($resource)->toArray();
+        
+        return $response->withJson($data);
     }
 }
