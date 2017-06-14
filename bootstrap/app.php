@@ -4,6 +4,7 @@ $dotenv = new Dotenv\Dotenv(__DIR__ . '/../');
 $dotenv->load();
 
 require_once 'database.php';
+require_once 'paginatoin.php';
 
 
 $app = new \Slim\App([

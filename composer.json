@@ -3,7 +3,8 @@
         "slim/slim": "^3.8",
         "illuminate/database": "^5.4",
         "vlucas/phpdotenv": "^2.4",
-        "league/fractal": "^0.16.0"
+        "league/fractal": "^0.16.0",
+        "Illuminate/pagination": "^5.4"
     },
     "autoload": {
         "psr-4" : {
