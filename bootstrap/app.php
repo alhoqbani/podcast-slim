@@ -14,9 +14,9 @@ $app = new \Slim\App([
 ]);
 
 $container = $app->getContainer();
-
 $container['fractal'] = function ($c) {
     return new \League\Fractal\Manager();
 };
 
+$app->add(new \App\Middleware\Cors());
 require_once '../routes/api.php';
